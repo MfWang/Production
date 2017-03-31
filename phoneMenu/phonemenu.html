@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动端类苹果导航</title>
+	<link href="./phonemenu.css" rel="stylesheet" type="text/css"/></title>
+</head>
+<body>
+    <select class="menu__animition_select">
+        <option value="0">menu animition</option>
+        <option value="1">动效1</option>
+        <option value="2">动效2</option>
+        <option value="3">动效3</option>
+        <option value="4">动效4</option>
+        <option value="5">动效5</option>
+        <option value="6">动效6</option>
+        <option value="7">动效7</option>
+        <option value="8">动效8</option>
+        <option value="9">动效9</option>
+        <option value="10">动效10</option>
+        <option value="11">动效11</option>
+        <option value="12">动效12</option>
+        <option value="13">动效13</option>
+        <option value="14">动效14</option>
+    </select>
+    <div class="app">
+        <div class="header">
+            <div class="header__icon header__icon__out">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="menu__animition" id="animition">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <img src="./photo1.jpg"/>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum felis eget commodo vulputate. Etiam finibus ex sem, sed molestie sapien euismod et. Nunc dolor magna, iaculis ut ipsum a, finibus imperdiet enim. Aliquam eget mi facilisis, dapibus felis sed, efficitur leo. Fusce vestibulum augue a ex feugiat pretium. Morbi eu aliquet mi. Nunc nec mi at quam rhoncus tincidunt eget non lectus.</p>
+        <p> Nullam elementum ornare posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec vel eros nec massa faucibus commodo vel eget dui. Donec tincidunt orci id dui varius, dapibus tristique dolor mollis. Sed non faucibus quam, id ultrices lectus. Nunc lacinia dui sed justo suscipit, nec ornare ligula fermentum. Sed vitae tincidunt enim. Maecenas eget magna ex. In suscipit risus sem.</p>
+    </div>
+    <script src="./jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script>
+        $(function() {
+            let select__index = $('.menu__animition_select option:selected').val();
+            $("#animition").addClass(`menu__animition${select__index}`);
+            $('.menu__animition_select').on('change', function() {
+                select__index = $('.menu__animition_select option:selected').val();
+                $("#animition").attr('class', `menu__animition menu__animition${select__index}`);
+                animationDelay();
+                if (select__index == 9) {
+                    $("#animition a:odd").css({'transform': 'translateX(50%) rotate(30deg)'});
+                    $("#animition a:even").css({'transform': 'translateX(-50%) rotate(-30deg)'});
+                } else if (select__index == 10) {
+                    $("#animition a:odd").css({'transform': 'translateX(50%) rotate(-30deg)'});
+                    $("#animition a:even").css({'transform': 'translateX(-50%) rotate(30deg)'});
+                }
+            });
+            var style = '';
+            $(".header__icon").click(function(){
+                $(this).toggleClass("header__icon__click header__icon__out");
+                $("#animition").slideToggle(250);
+            });
+            function animationDelay() {
+                $("#animition a").each(function( index ) {
+                    select__index = $('.menu__animition_select option:selected').val();
+                    if(select__index == 7 || select__index == 8 || select__index == 14) {
+                        $(this).css({'animation-delay': 0});
+                        style += `#animition a:nth-child(${index + 1}):after {animation-delay: ${index / 10}s} `;
+                    } else if (select__index == 9 || select__index == 10) {
+                        $(this).css({'animation-delay': (index/20)+'s'});
+                    } else {
+                        $(this).css({'animation-delay': (index/10)+'s'});
+                    }
+                });
+                if(select__index == 7 || select__index == 8 || select__index == 14) {
+                    $("head").append($('<style>'+style+'</style>'));
+                }
+            }
+            animationDelay();
+        })
+	</script>
+</body>
+</html>

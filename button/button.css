@@ -1,0 +1,779 @@
+*,
+*:after,
+*::before {
+    box-sizing: border-box;
+}
+body {
+	background: #2ac56c;
+}
+a {
+	position: relative;
+	display: inline-block;
+	margin: 15px 25px;
+	outline: none;
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 400;
+	text-shadow: 0 0 1px rgba(255,255,255,0.3);
+	font-size: 1.35em;
+}
+
+a:hover,
+a:focus {
+	outline: none;
+}
+
+/* Effect 1: Brackets */
+.type1 a::before,
+.type1 a::after {
+	display: inline-block;
+	opacity: 0;
+	transition: transform 0.3s, opacity 0.2s;
+}
+
+.type1 a::before {
+	margin-right: 10px;
+	content: '[';
+	transform: translateX(20px);
+}
+
+.type1 a::after {
+	margin-left: 10px;
+	content: ']';
+	transform: translateX(-20px);
+}
+
+.type1 a:hover::before,
+.type1 a:hover::after,
+.type1 a:focus::before,
+.type1 a:focus::after {
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+/* Effect 2: 3D rolling links, idea from http://hakim.se/thoughts/rolling-links */
+.type2 a {
+	line-height: 44px;
+	perspective: 1000px;
+}
+
+.type2 a span {
+	position: relative;
+	display: inline-block;
+	padding: 0 14px;
+	background: #2195de;
+	transition: transform 0.3s;
+	transform-origin: 50% 0;
+	transform-style: preserve-3d;
+}
+.type2 a:hover span,
+.type2 a:focus span {
+	transform: rotateX(90deg) translateY(-22px);
+}
+
+/* Effect 3: bottom line slides/fades in */
+.type3 a {
+	padding: 8px 0;
+}
+.type3 a::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background: rgba(0,0,0,0.1);
+	content: '';
+	opacity: 0;
+	transition: opacity 0.3s, transform 0.3s;
+	transform: translateY(10px);
+}
+.type3 a:hover::after,
+.type3 a:focus::after {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+/* Effect 4: bottom border enlarge */
+.type4 a {
+	padding: 0 0 10px;
+}
+
+.type4 a::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #fff;
+	content: '';
+	opacity: 0;
+	transition: height 0.3s, opacity 0.3s, transform 0.3s;
+	transform: translateY(-10px);
+}
+
+.type4 a:hover::after,
+.type4 a:focus::after {
+	height: 5px;
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+/* Effect 5: same word slide in */
+.type5 a {
+	overflow: hidden;
+	padding: 0 4px;
+	height: 1em;
+}
+
+.type5 a span {
+	position: relative;
+	display: inline-block;
+	transition: transform 0.3s;
+}
+
+.type5 a span::before {
+	position: absolute;
+	top: 100%;
+	content: attr(data-hover);
+	font-weight: 700;
+	transform: translate3d(0,0,0);
+}
+
+.type5 a:hover span,
+.type5 a:focus span {
+	transform: translateY(-100%);
+}
+
+/* Effect 5: same word slide in and border bottom */
+.type6 a {
+	margin: 0 10px;
+	padding: 10px 20px;
+}
+
+.type6 a::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #fff;
+	content: '';
+	transition: top 0.3s;
+}
+
+.type6 a::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2px;
+	height: 2px;
+	background: #fff;
+	content: '';
+	transition: height 0.3s;
+}
+
+.type6 a:hover::before {
+	top: 100%;
+	opacity: 1;
+}
+
+.type6 a:hover::after {
+	height: 100%;
+} 
+
+/* Effect 7: second border slides up */
+.type7 a {
+	padding: 12px 10px 10px;
+	color: #566473;
+	text-shadow: none;
+	font-weight: 700;
+}
+
+.type7 a::before,
+.type7 a::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background: #566473;
+	content: '';
+	transition: transform 0.3s;
+	transform: scale(0.85);
+}
+
+.type7 a::after {
+	opacity: 0;
+	transition: top 0.3s, opacity 0.3s, transform 0.3s;
+}
+
+.type7 a:hover::before,
+.type7 a:hover::after,
+.type7 a:focus::before,
+.type7 a:focus::after {
+	transform: scale(1);
+}
+
+.type7 a:hover::after,
+.type7 a:focus::after {
+	top: 0%;
+	opacity: 1;
+}
+
+/* Effect 8: border slight translate */
+.type8 a {
+	padding: 10px 20px;
+}
+
+.type8 a::before,
+.type8 a::after  {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 3px solid #354856;
+	content: '';
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+.type8 a::after  {
+	border-color: #fff;
+	opacity: 0;
+	transform: translateY(-7px) translateX(6px);
+}
+
+.type8 a:hover::before,
+.type8 a:focus::before {
+	opacity: 0;
+	transform: translateY(5px) translateX(-5px);
+}
+
+.type8 a:hover::after,
+.type8 a:focus::after  {
+	opacity: 1;
+	transform: translateY(0px) translateX(0px);
+}
+
+/* Effect 9: second text and borders */
+.type9 a {
+	margin: 0 20px;
+	padding: 18px 20px;
+}
+
+.type9 a::before,
+.type9 a::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: #fff;
+	content: '';
+	opacity: 0.2;
+	transition: opacity 0.3s, height 0.3s;
+}
+
+.type9 a::after {
+	top: 100%;
+	opacity: 0;
+	transition: transform 0.3s, opacity 0.3s;
+	transform: translateY(-10px);
+}
+
+.type9 a span:first-child {
+	z-index: 2;
+	display: block;
+	font-weight: 300;
+}
+
+.type9 a span:last-child {
+	z-index: 1;
+	display: block;
+	padding: 8px 0 0 0;
+	color: rgba(0,0,0,0.4);
+	text-shadow: none;
+	text-transform: none;
+	font-style: italic;
+	font-size: 0.75em;
+	font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+	opacity: 0;
+	transition: transform 0.3s, opacity 0.3s;
+	transform: translateY(-100%);
+}
+
+.type9 a:hover::before,
+.type9 a:focus::before {
+	height: 6px;
+}
+
+.type9 a:hover::before,
+.type9 a:hover::after,
+.type9 a:focus::before,
+.type9 a:focus::after {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.type9 a:hover span:last-child,
+.type9 a:focus span:last-child {
+	opacity: 1;
+	transform: translateY(0%);
+}
+
+/* Effect 10: reveal, push out */
+.type10  {
+	position: relative;
+	z-index: 1;
+}
+
+.type10 a {
+	overflow: hidden;
+	margin: 0 15px;
+}
+
+.type10 a span {
+	display: block;
+	padding: 10px 20px;
+	background: #0f7c67;
+	transition: transform 0.3s;
+}
+
+.type10 a::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	padding: 10px 20px;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	color: #0f7c67;
+	content: attr(data-hover);
+	transform: translateX(-25%);
+}
+
+.type10 a:hover span,
+.type10 a:focus span {
+	transform: translateX(100%);
+}
+
+.type10 a:hover::before,
+.type10 a:focus::before {
+	transform: translateX(0%);
+}
+
+/* Effect 11: text fill based on Lea Verou's animation http://dabblet.com/gist/6046779 */
+.type11 a {
+	padding: 10px 0;
+	border-top: 2px solid #0972b4;
+	color: #0972b4;
+	text-shadow: none;
+} 
+
+.type11 a::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	padding: 10px 0;
+	max-width: 0;
+	border-bottom: 2px solid #fff;
+	color: #fff;
+	content: attr(data-hover);
+	transition: max-width 0.5s;
+}
+
+.type11 a:hover::before,
+.ctype11 a:focus::before {
+	max-width: 100%;
+}
+
+/* Effect 12: circle */
+.type12 a::before,
+.type12 a::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	border: 2px solid rgba(0,0,0,0.1);
+	border-radius: 50%;
+	content: '';
+	opacity: 0;
+	transition: transform 0.3s, opacity 0.3s;
+	transform: translateX(-50%) translateY(-50%) scale(0.2);
+}
+
+.type12 a::after {
+	width: 90px;
+	height: 90px;
+	border-width: 6px;
+	transform: translateX(-50%) translateY(-50%) scale(0.8);
+}
+
+.type12 a:hover::before,
+.type12 a:hover::after,
+.type12 a:focus::before,
+.type12 a:focus::after {
+	opacity: 1;
+	transform: translateX(-50%) translateY(-50%) scale(1);
+}
+
+/* Effect 13: three circles */
+.type13 a {
+	transition: color 0.3s;
+}
+
+.type13 a::before {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	color: transparent;
+	content: '•';
+	text-shadow: 0 0 transparent;
+	font-size: 1.2em;
+	transition: text-shadow 0.3s, color 0.3s;
+	transform: translateX(-50%);
+	pointer-events: none;
+}
+
+.type13 a:hover::before,
+.type13 a:focus::before {
+	color: #fff;
+	text-shadow: 10px 0 #fff, -10px 0 #fff;
+}
+
+.type13 a:hover,
+.type13 a:focus {
+	color: #ba7700;
+}
+
+/* Effect 14: border switch */
+.type14 a {
+	padding: 0 20px;
+	height: 45px;
+	line-height: 45px;
+}
+
+.type14 a::before,
+.type14 a::after {
+	position: absolute;
+	width: 45px;
+	height: 2px;
+	background: #fff;
+	content: '';
+	opacity: 0.2;
+	transition: all 0.3s;
+	pointer-events: none;
+}
+
+.type14 a::before {
+	top: 0;
+	left: 0;
+	transform: rotate(90deg);
+	transform-origin: 0 0;
+}
+
+.type14 a::after {
+	right: 0;
+	bottom: 0;
+	transform: rotate(90deg);
+	transform-origin: 100% 0;
+}
+
+.type14 a:hover::before,
+.type14 a:hover::after,
+.type14 a:focus::before,
+.type14 a:focus::after {
+	opacity: 1;
+}
+
+.type14 a:hover::before,
+.type14 a:focus::before {
+	left: 50%;
+	transform: rotate(0deg) translateX(-50%);
+}
+
+.type14 a:hover::after,
+.type14 a:focus::after {
+	right: 50%;
+	transform: rotate(0deg) translateX(50%);
+}
+
+/* Effect 15: scale down, reveal */
+.type15 a {
+	color: rgba(0,0,0,0.2);
+	font-weight: 700;
+	text-shadow: none;
+}
+
+.type15 a::before {
+	color: #fff;
+	content: attr(data-hover);
+	position: absolute;
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+.type15 a:hover::before,
+.type15 a:focus::before {
+	transform: scale(0.9);
+	opacity: 0;
+}
+
+/* Effect 16: fall down */
+.type16 a {
+	color: #6f8686;
+	text-shadow: 0 0 1px rgba(111,134,134,0.3);
+}
+
+.type16 a::before {
+	color: #fff;
+	content: attr(data-hover);
+	position: absolute;
+	opacity: 0;
+	text-shadow: 0 0 1px rgba(255,255,255,0.3);
+	transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);
+	transition: transform 0.3s, opacity 0.3s;
+	pointer-events: none;
+}
+
+.type16 a:hover::before,
+.type16 a:focus::before {
+	transform: scale(1) translateX(0px) translateY(0px) rotate(0deg);
+	opacity: 1;
+}
+
+/* Effect 17: move up fade out, push border */
+.type17 a {
+	color: #10649b;
+	text-shadow: none;
+	padding: 10px 0;
+}
+
+.type17 a::before {
+	color: #fff;
+	text-shadow: 0 0 1px rgba(255,255,255,0.3);
+	content: attr(data-hover);
+	position: absolute;
+	transition: transform 0.3s, opacity 0.3s;
+	pointer-events: none;
+}
+
+.type17 a::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: #fff;
+	opacity: 0;
+	transform: translateY(5px);
+	transition: transform 0.3s, opacity 0.3s;
+	pointer-events: none;
+}
+
+.type17 a:hover::before,
+.type17 a:focus::before {
+	opacity: 0;
+	transform: translateY(-2px);
+}
+
+.type17 a:hover::after,
+.type17 a:focus::after {
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+/* Effect 18: cross */
+.type18 {
+	position: relative;
+	z-index: 1;
+}
+
+.type18 a {
+	padding: 0 5px;
+	color: #b4770d;
+	font-weight: 700;
+	transition: color 0.3s;
+}
+
+.type18 a::before,
+.type18 a::after {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 50%;
+	height: 2px;
+	margin-top: -1px;
+	background: #b4770d;
+	content: '';
+	z-index: -1;
+	transition: transform 0.3s, opacity 0.3s;
+	pointer-events: none;
+}
+
+.type18 a::before {
+	transform: translateY(-20px);
+}
+
+.type18 a::after {
+	transform: translateY(20px);
+}
+
+.type18 a:hover,
+.type18 a:focus {
+	color: #fff;
+}
+
+.type18 a:hover::before,
+.type18 a:hover::after,
+.type18 a:focus::before,
+.type18 a:focus::after {
+	opacity: 0.7;
+}
+
+.type18 a:hover::before,
+.type18 a:focus::before {
+	transform: rotate(45deg);
+}
+
+.type18 a:hover::after,
+.type18 a:focus::after {
+	transform: rotate(-45deg);
+}
+
+/* Effect 19: 3D side */
+.type19 a {
+	line-height: 2em;
+	margin: 15px;
+	perspective: 800px;
+	width: 200px;
+}
+
+.type19 a span {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	padding: 0 14px;
+	background: #e35041;
+	transition: transform 0.4s, background 0.4s;
+	transform-style: preserve-3d;
+	transform-origin: 50% 50% -100px;
+}
+
+.csstransforms3d .type19 a span::before {
+	position: absolute;
+	top: 0;
+	left: 100%;
+	width: 100%;
+	height: 100%;
+	background: #b53a2d;
+	content: attr(data-hover);
+	transition: background 0.4s;
+	transform: rotateY(90deg);
+	transform-origin: 0 50%;
+	pointer-events: none;
+}
+
+.type19 a:hover span,
+.type19 a:focus span {
+	background: #b53a2d;
+	transform: rotateY(-90deg);
+}
+
+.csstransforms3d .type19 a:hover span::before,
+.csstransforms3d .type19 a:focus span::before {
+	background: #ef5e50;	
+}
+
+/* Effect 20: 3D side */
+.type20 a {
+	line-height: 2em;
+	perspective: 800px;
+}
+
+.type20 a span {
+	position: relative;
+	display: inline-block;
+	padding: 3px 15px 0;
+	background: #587285;
+	box-shadow: inset 0 3px #2f4351;
+	transition: background 0.6s;
+	transform-origin: 50% 0;
+	transform-style: preserve-3d;
+	transform-origin: 0% 50%;
+}
+
+.type20 a span::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	color: #2f4351;
+	content: attr(data-hover);
+	transform: rotateX(270deg);
+	transition: transform 0.6s;
+	transform-origin: 0 0;
+	pointer-events: none;
+}
+
+.type20 a:hover span,
+.type20 a:focus span {
+	background: #2f4351;
+}
+
+.type20 a:hover span::before,
+.type20 a:focus span::before {
+	transform: rotateX(10deg);
+}
+
+/* Effect 21: borders slight translate */
+.type21 a {
+	padding: 10px;
+	color: #237546;
+	font-weight: 700;
+	text-shadow: none;
+	transition: color 0.3s;
+}
+
+.type21 a::before,
+.type21 a::after {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #fff;
+	content: '';
+	opacity: 0;
+	transition: opacity 0.3s, transform 0.3s;
+	transform: translateY(-10px);
+}
+
+.type21 a::before {
+	top: 0;
+	transform: translateY(-10px);
+}
+
+.type21 a::after {
+	bottom: 0;
+	transform: translateY(10px);
+}
+
+.type21 a:hover,
+.type21 a:focus {
+	color: #fff;
+}
+
+.type21 a:hover::before,
+.type21 a:focus::before,
+.type21 a:hover::after,
+.type21 a:focus::after {
+	opacity: 1;
+	transform: translateY(0px);
+}
