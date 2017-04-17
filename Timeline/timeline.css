@@ -1,16 +1,17 @@
-html, body{
-    margin: 0;
-    padding: 0;
-}
+@import '../format.css';
 .timeline{
-    width: 400px;
+    width: 800px;
     margin: 0 auto;
+    border: 1px solid #e0e0e0;
+    padding: 40px;
 }
-p{
+.category{
     font-size: 20px;
     color: rgba(0,0,0,0.8);
-    margin-top: .4rem;
-    margin-bottom: .28rem;
+    margin: 20px;
+}
+.list{
+    margin: 0 0 50px 0;
 }
 .timeline_item{
     position: relative;
@@ -19,36 +20,37 @@ p{
     margin: 0;
     font-size: 15px;
     color: rgba(0, 0, 0, 0.8);
+    margin-left: 50px;
 }
-.timeline_item:last-child .events__item__tail{
+.timeline_item:last-child .timeline_item__tail{
     display: none;
 }
 .timeline_item__tail{
     position: absolute;
-    left: 10px;
+    left: 6px;
     top: 0;
     height: 100%;
     border-left: 2px solid #e9e9e9;
 }
 .timeline_item__head{
     position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
     border: 2px solid #83C3FF;
     background: #83C3FF;
 }
 .timeline_item__content{
-    padding: 0 0 .4rem .48rem;
+    padding: 0 0 0 28px;
     font-size: 24px;
     position: relative;
-    top: -3px;
+    top: -12px;
 }
 .timeline_item__month{
     position: absolute;
-    left:-120px;
-    top: -10px;
-    width: 100px;
+    left: -44px;
+    top: 5px;
+    width: 40px;
     font-size: 20px;
     color: #000;
     text-align: right;
